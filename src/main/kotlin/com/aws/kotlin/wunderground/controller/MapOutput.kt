@@ -15,8 +15,8 @@ interface MapperClass {
 		val mapper = Mappers.getMapper( MapperClass::class.java )
 	}
 	@Mappings(
-			Mapping(target = "forecastArray.condition", source = "forecast.txtForecast.forecastday.fcttext"),
-			Mapping(target = "forecastArray.conditionMetric", source = "forecast.txtForecast.forecastday.fcttextMetric"),
+			Mapping(target = "forecastArray.condition", source = "forecast.txt_forecast.forecastday.fcttext"),
+			Mapping(target = "forecastArray.conditionMetric", source = "forecast.txt_forecast.forecastday.fcttext_metric"),
 			Mapping(target = "forecastArray.time", source = "forecast.txtForecast.forecastday.title")
 	)
 	fun mapOutput(forecast: WundergroundForecastOutput?) : GetWeatherOutput?

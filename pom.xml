@@ -8,7 +8,7 @@
 	<packaging>jar</packaging>
 
 	<properties>
-		<kotlin.version>1.1.1</kotlin.version>
+		<kotlin.version>1.1.2-4</kotlin.version>
 		<source.dir>src/main/kotlin</source.dir>
 		<org.mapstruct.version>1.1.0.Final</org.mapstruct.version>
 	</properties>
@@ -21,6 +21,24 @@
 				<version>${kotlin.version}</version>
 				<executions>
 					<execution>
+						<id>kapt</id>
+						<goals>
+							<goal>kapt</goal>
+						</goals>
+						<configuration>
+							<sourceDirs>
+								<sourceDir>src/main/kotlin</sourceDir>
+							</sourceDirs>
+							<annotationProcessorPaths>
+								<annotationProcessorPath>
+									<groupId>org.mapstruct</groupId>
+									<artifactId>mapstruct-processor</artifactId>
+									<version>${org.mapstruct.version}</version>
+								</annotationProcessorPath>
+							</annotationProcessorPaths>
+						</configuration>
+					</execution>
+					<execution>
 						<id>compile</id>
 						<goals>
 							<goal>compile</goal>
@@ -29,13 +47,6 @@
 							<sourceDirs>
 								<sourceDir>${project.basedir}/${source.dir}</sourceDir>
 							</sourceDirs>
-							<annotationProcessorPaths>
-								<path>
-									<groupId>org.mapstruct</groupId>
-									<artifactId>mapstruct-processor</artifactId>
-									<version>${org.mapstruct.version}</version>
-								</path>
-							</annotationProcessorPaths>
 						</configuration>
 					</execution>
 				</executions>
@@ -72,6 +83,41 @@
 				</executions>
 			</plugin>
 		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.jetbrains.kotlin
+										</groupId>
+										<artifactId>
+											kotlin-maven-plugin
+										</artifactId>
+										<versionRange>
+											[1.1.2-4,)
+										</versionRange>
+										<goals>
+											<goal>kapt</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 
 	<dependencyManagement>
