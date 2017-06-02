@@ -7,13 +7,13 @@ import java.io.InputStream
 import java.io.InputStreamReader
 import com.aws.kotlin.wunderground.model.wunderground.WundergroundForecastOutput
 import com.aws.kotlin.wunderground.model.api.GetWeatherOutput
-import com.aws.kotlin.wunderground.controller.parseWundergroundResponse
+import com.aws.kotlin.wunderground.controller.MapperClass
 
-fun callWunderground(zipCode: String?) : GetWeatherOutput {
+fun callWunderground(zipCode: String?) : GetWeatherOutput? {
 	var WundergroundKey: String? = System.getenv("WundergroundKey")
 	var url: URL = URL("http://api.wunderground.com/api/" + WundergroundKey + "/forecast/q/" + zipCode + ".json")
 	var connection: URLConnection = url.openConnection()
 	
 	var rawOutput: WundergroundForecastOutput = parseWundergroundResponse(InputStreamReader(connection.getInputStream()))
-	return mapOutput(rawOutput)
+	return MapperClass.Companion.mapper.mapOutput(rawOutput)
 }
