@@ -4,5 +4,4 @@ dependency-reduced-pom.xml
 /target
 /bin
 .project
-.classpath
 /.apt_generated/
