@@ -4,7 +4,7 @@ import com.amazonaws.services.lambda.runtime.Context
 import com.amazonaws.services.lambda.runtime.RequestHandler
 import com.aws.kotlin.wunderground.model.api.GetWeatherInput
 import com.aws.kotlin.wunderground.model.api.GetWeatherOutput
-import com.aws.kotlin.wunderground.controller.callWunderground
+import com.aws.kotlin.wunderground.model.adapter.callWunderground
 
 class LambdaFunctionHandler : RequestHandler<GetWeatherInput, GetWeatherOutput> {
 	override fun handleRequest(input: GetWeatherInput, context: Context) : GetWeatherOutput? {

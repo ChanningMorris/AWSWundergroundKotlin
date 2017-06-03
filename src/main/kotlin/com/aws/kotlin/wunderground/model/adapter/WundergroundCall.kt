@@ -1,4 +1,4 @@
-package com.aws.kotlin.wunderground.controller
+package com.aws.kotlin.wunderground.model.adapter
 
 import java.net.URLConnection
 import java.net.URL
@@ -8,6 +8,7 @@ import java.io.InputStreamReader
 import com.aws.kotlin.wunderground.model.wunderground.WundergroundForecastOutput
 import com.aws.kotlin.wunderground.model.api.GetWeatherOutput
 import com.aws.kotlin.wunderground.controller.MapperClass
+import com.aws.kotlin.wunderground.controller.parseWundergroundResponse
 
 fun callWunderground(zipCode: String?) : GetWeatherOutput? {
 	var WundergroundKey: String? = System.getenv("WundergroundKey")
