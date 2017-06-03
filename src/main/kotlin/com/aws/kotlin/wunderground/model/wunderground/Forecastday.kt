@@ -15,13 +15,13 @@ class Forecastday {
 	var iconUrl: String? = null
 	@SerializedName("title")
 	@Expose
-	public var title: String? = null
+	var title: String? = null
 	@SerializedName("fcttext")
 	@Expose
-	public var fcttext: String? = null
+	var fcttext: String? = null
 	@SerializedName("fcttext_metric")
 	@Expose
-	public var fcttextMetric: String? = null
+	var fcttextMetric: String? = null
 	@SerializedName("pop")
 	@Expose
 	var pop: String? = null
