@@ -9,5 +9,5 @@ class TxtForecast {
 	var date: String? = null
 	@SerializedName("forecastday")
 	@Expose
-	var forecastday: List<Forecastday>? = null
+	public var forecastday: List<Forecastday>? = null
 }

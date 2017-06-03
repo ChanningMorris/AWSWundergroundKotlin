@@ -5,10 +5,10 @@ class GetWeatherInput{
 }
 
 class GetWeatherOutput{
-	var forecast: List<Forecast>? = null
+	var forecast: List<ForecastList>? = null
 }
 
-class Forecast{
+class ForecastList{
 	var time: String? = null
 	var condition: String? = null
 	var conditionMetric: String? = null

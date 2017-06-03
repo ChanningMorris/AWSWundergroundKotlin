@@ -2,21 +2,31 @@ package com.aws.kotlin.wunderground.controller
 
 import com.aws.kotlin.wunderground.model.wunderground.WundergroundForecastOutput
 import com.aws.kotlin.wunderground.model.api.GetWeatherOutput
-import com.aws.kotlin.wunderground.model.api.Forecast
 import com.aws.kotlin.wunderground.model.wunderground.Forecastday
+import com.aws.kotlin.wunderground.model.api.ForecastList
+import com.aws.kotlin.wunderground.model.wunderground.TxtForecast
+import com.aws.kotlin.wunderground.model.wunderground.Forecast
 
-fun mapOutput(forecast: WundergroundForecastOutput) : GetWeatherOutput {
-	var output: GetWeatherOutput = GetWeatherOutput()
-	var forecastArray: MutableList<Forecast>? = mutableListOf()
-	
-	for(item in forecast.forecast!!.txtForecast!!.forecastday!!){
-		var forecastObj: Forecast = Forecast()
-		forecastObj.condition = item.fcttext
-		forecastObj.conditionMetric = item.fcttextMetric
-		forecastObj.time = item.title
-		forecastArray!!.add(forecastObj)
+import org.mapstruct.Mapper
+import org.mapstruct.factory.Mappers
+import org.mapstruct.Mapping
+import org.mapstruct.Mappings
+
+@Mapper
+interface MapperClass {
+
+	companion object{
+		val mapper = Mappers.getMapper( MapperClass::class.java )
 	}
 	
-	output.forecast = forecastArray
-	return output
+	@Mappings(
+			Mapping(target = "condition", source = "fcttext"),
+			Mapping(target = "conditionMetric", source = "fcttextMetric"),
+			Mapping(target = "time", source = "title"))
+	fun mapOutput(forecastDay: Forecastday?) : ForecastList?
+	
+	@Mapping(target = "forecast", source = "forecast.txtForecast.forecastday")
+	fun mapOutput(outputObj: WundergroundForecastOutput?) : GetWeatherOutput?
+
 }
+
